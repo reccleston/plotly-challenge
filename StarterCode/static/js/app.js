@@ -50,16 +50,12 @@ d3.json('samples.json').then(data => {
     var demographic_info = d3.select('#sample-metadata');
     var demo_keys = Object.keys(lookupable_metadata[940]);
     demo_keys.forEach(key => demographic_info.append('p').text(`${key}: ${lookupable_metadata[940][key]}`));
-    console.log(demographic_info);
-    console.log(lookupable_metadata);
     
-
     // handling different subjects
     function handleTestSubjectData() {
         var subject_id = d3.select(this).node().value;
         var relevant_subject = lookupable_data[subject_id];
 
-        console.log(relevant_subject.otu_labels);
         // h bar
         var trace_bar = {
             type: 'bar',
@@ -83,8 +79,8 @@ d3.json('samples.json').then(data => {
               size: relevant_subject.sample_values
             }
           };
-          var data_to_plot = [trace_bubble];
-          Plotly.newPlot('bubble', data_to_plot);
+        var data_to_plot = [trace_bubble];
+        Plotly.newPlot('bubble', data_to_plot);
 
         // demographics card
         demographic_info.html('');
